@@ -21,3 +21,5 @@
     <summary>Для кого бот</summary>
     Бот разработан не в цлеях наврядить процессу обучаещгося, а исключтельно сократить время. Если у учени(ка/цы) отсутсвуют знания в изучаемой теме, то пользоваться         ботом не желательно.  
 </details>
+
+[![Stargazers repo roster for @FrigMort/Gdz-bot](https://reporoster.com/stars/dark/FrigMort/Gdz-bot)](https://github.com/FrigMort/Gdz-bot/stargazers)
