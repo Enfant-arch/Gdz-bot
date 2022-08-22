@@ -87,7 +87,7 @@ class Algebra9():
         return listLinks
     async def connect_for_mordkovichuglublennoe(subject, class_, author, prgh, taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-        url = f"https://megaresheba.ru/publ/reshebnik/{taskN}/{class_}_klass_{author}/34-1-0-2097/{prgh}-{taskN}-paragraph"
+        url = f"https://megaresheba.ru/publ/reshebnik/{class_}_klass_{author}/34-1-0-2097/{prgh}-{taskN}-paragraph"
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
         return listLinks
 
@@ -126,13 +126,12 @@ class Algebra8():
 
     async def connect_for_mordkovichuglublennoe(subject, class_, author, prgh, taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-        url = f"https://megaresheba.ru/publ/gdz/{subject}/{class_}_klass/{author}/{prgh}-nomer-{taskN}"
+        url = f"https://megaresheba.ru/gdz/algebra/8-klass/mordkovich-uglublennyj-zadachnik/{prgh}-nomer-{taskN}"
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
         return listLinks
     async def connect_for_Merzlyak(subject, class_, author, prgh, taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-       
-        url = f"https://megaresheba.ru/gdz/{subject}/{class_}_klass/{author}/{prgh}-1-{taskN}-nomer"
+        url = f"https://megaresheba.ru/publ/gdz/{subject}/{class_}_klass/{author}/{prgh}-1-{taskN}-nomer"
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
         return listLinks
     async def connect_for_Merzlyakublennoe(subject, class_, author, prgh, taskN):
@@ -141,23 +140,13 @@ class Algebra8():
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
         return listLinks
 
-    async def connect_for_Merzlyakublennoe(subject, class_, author, prgh, taskN):
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-        url = f"https://megaresheba.ru/gdz/{subject}/{class_}-klass/{author}/{prgh}-{taskN}"
-        logging.info('URl :  %r', url)
-        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
-        return listLinks
     async def connect_for_Alimov(subject, class_, author, taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
         url = f"https://megaresheba.ru/index/reshebnik_po_algebre_{class_}_klass_{author}/0-4636/{taskN}-nomer"
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
 
-    async def connect_for_Muravin(subject, class_, author, taskN):
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-        url = f"https://megaresheba.ru/index/reshebnik_po_algebre_{class_}_klass_{author}/0-4636/{taskN}-nomer"
-        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
-        return listLinks
+
 
 class Algebra7():
     async def connect_for_Makrichev(subject, class_, author,taskN):
@@ -180,18 +169,18 @@ class Algebra7():
     async def connect_for_kolyagin(subject, class_, author, taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
         url = f"https://megaresheba.ru/gdz/{subject}/{class_}-klass/{author}/{taskN}-nomer"
-        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
-    async def connect_for_Merzlyak(subject, class_, author, prgh, taskN):
+    async def connect_for_Merzlyak(subject, class_, author,  taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
         url = f"https://megaresheba.ru/gdz/{subject}/{class_}-klass/{author}/{taskN}-nomer"
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
 
-    async def connect_for_nikolskij(subject, class_, author, prgh, taskN):
+    async def connect_for_nikolskij(subject, class_, author, taskN):
         headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
         url = f"https://megaresheba.ru/publ/reshebnik/{subject}/{author}/34-1-0-2298/{taskN}-nomer"
-        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
 
 class Geometry11():
@@ -266,8 +255,45 @@ class Geometry7():
         return listLinks
     async def connect_to_pogorelov(subject, class_, author, prgh, taskN):
         url = f"https://megaresheba.ru/publ/reshebnik/geometrija/pogorelov_{class_}_8_9_klass/32-1-0-1198/{prgh}-nomer-{taskN}"
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author,prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
+class Phith11():
+    async def connect_to_rymkevich(subject, class_, author, taskN):
+        url = f"https://megaresheba.ru/gdz-sbornik-zadach-po-fizike-10-{class_}-klass-{author}/{taskN}-nomer"
+        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_stepanova(subject, class_, author, prgh, taskN):
+        url = f'https://megaresheba.ru/gdz/geometrija/{class_}_klass/merzljak/{prgh}-paragraph-{taskN}'
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author,prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+    async def connect_to_parfenova(subject, class_, author, taskN):
+        url = f'https://megaresheba.ru/publ/gdz/geometrija/7_klass/merzlyak/{taskN}-nomer'
+        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
+        return listLinks
+    async def connect_to_gromov(subject, class_, author, prgh, taskN):
+        url = f"https://megaresheba.ru/publ/reshebnik/geometrija/pogorelov_{class_}_8_9_klass/32-1-0-1198/{prgh}-nomer-{taskN}"
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+class Phith10():
+    async def connect_to_rymkevich(subject, class_, author, taskN):
+        url = f"https://megaresheba.ru/gdz-sbornik-zadach-po-fizike-{class_}-11-klass-{author}/{taskN}-nomer"
+        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_mjakishev(subject, class_, author, prgh, taskN):
+        url = f'https://megaresheba.ru/publ/reshebnik/fizika/domashnjaja_rabote_po_fizike_za_10_klass_k_uchebniku_fizika_10_klass_g_ja_mjakishev_b_b_bukhovcev_2011/31-1-0-2190/{prgh}-nomer-{taskN}'
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author,prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+    
+class Phith9():
+    pass
+class Phith8():
+    pass
+class Phith7():
+    pass
+
 class Russki_Yazik11():
     pass
 class Russki_Yazik10():

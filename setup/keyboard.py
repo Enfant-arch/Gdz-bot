@@ -4,14 +4,19 @@ from aiogram.types import (InlineQuery, InlineKeyboardButton, InlineKeyboardMark
 
 
 ###****************Start BTN-s ***************###
-start_inline_aboutbtn = InlineKeyboardButton("О боте# ", url="https://google.com")
-start_inline_support_author = InlineKeyboardButton("Помочь автору финансово #", callback_data="donate")
-start_inline_LetUsingBot = InlineKeyboardButton("Начать использование#", callback_data="start")
+start_inline_aboutbtn = InlineKeyboardButton("О боте🌐 ", url="https://google.com")
+start_inline_support_author = InlineKeyboardButton("Поддержать 💸", url="http://qiwi.com/n/CLUME911")
+start_inline_LetUsingBot = InlineKeyboardButton("Начать использование▶️", callback_data="start")
 start_inline_Keyboard = InlineKeyboardMarkup(row_width=3).add(start_inline_aboutbtn,
                                                              start_inline_support_author,
                                                             start_inline_LetUsingBot)
-start_reply_search_Task = KeyboardButton("Найти решение #")
-start_reply_Keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add(start_reply_search_Task)
+start_reply_search_Task = KeyboardButton("Найти решения🔍")
+start_reply_how_use = KeyboardButton("Как использовать бота❔")
+start_reply_Keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add(start_reply_search_Task, start_reply_how_use)
+ToStartReply = KeyboardButton('🔙Главное меню')
+other_numbers = KeyboardButton("Другой номер")
+other_solution = KeyboardButton("Другое решение")
+AE_replyKeyBoard = ReplyKeyboardMarkup(resize_keyboard=True).add(other_numbers, ToStartReply, other_solution) 
 #************************************************#
 ###****************Subjects***************###
 '''
@@ -82,6 +87,14 @@ age_reply_Keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add(
     class7, class8, class9,
     class10, class11
 )
+
+#####Start with 7 class
+age7_reply_Keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    class7, class8, class9,
+    class10, class11
+)
+
+
 #************************************************#
 ###****************Authors***************###
 ###****************ALGEBRA***************###
@@ -123,13 +136,14 @@ author_algebra_8_3 = KeyboardButton("Мордкович Углубленный")
 author_algebra_8_4 = KeyboardButton("Мордкович")
 author_algebra_8_5 = KeyboardButton("Мерзляк")
 author_algebra_8_6 = KeyboardButton("Мерзляк Углубленный")
-author_algebra_8_6 = KeyboardButton("Алимов")
-author_algebra_8_6 = KeyboardButton("Мурваин")
+author_algebra_8_7 = KeyboardButton("Алимов")
+
 ###***************************************###
 
 autors_reply_Keyboard_algebra8 = ReplyKeyboardMarkup(resize_keyboard=True).add(
     author_algebra_8_1, author_algebra_8_2, author_algebra_8_3, 
-    author_algebra_8_4, author_algebra_8_5, author_algebra_8_6
+    author_algebra_8_4, author_algebra_8_5, author_algebra_8_6,
+    author_algebra_8_7
 )
 
 ###****************Algebra7***************###
@@ -176,6 +190,56 @@ authors_reply_KeyBoard_geometry9 = ReplyKeyboardMarkup(resize_keyboard=True).add
 )
 
 ###****************Geometry8***************###
+author_geometry_8_1 = KeyboardButton("Атанасян")
+author_geometry_8_2 = KeyboardButton("Мерзляк")
+author_geometry_8_3 = KeyboardButton("Атанасян раб. тетрадь")
+author_geometry_8_4 = KeyboardButton("Погорелов")
+authors_reply_KeyBoard_geometry8 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_geometry_8_1, author_geometry_8_2, author_geometry_8_3,
+    author_geometry_8_4
+)
+
+###****************Geometry7***************###
+author_geometry_7_1 = KeyboardButton("Атанасян")
+author_geometry_7_2 = KeyboardButton("Мерзляк")
+author_geometry_7_3 = KeyboardButton("Мерзляк раб. тетрадь")
+author_geometry_7_4 = KeyboardButton("Погорелов")
+authors_reply_KeyBoard_geometry7 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_geometry_7_1, author_geometry_7_2, author_geometry_7_3,
+    author_geometry_7_4
+)
+###****************PHITH***************###
+###****************Phith11***************###
+author_phith_11_1 = KeyboardButton("Задачник Рымкевич")
+author_phith_11_2 = KeyboardButton("Степанов Сборник задач")
+author_phith_11_3 = KeyboardButton("Парфентьева Сборник задач")
+author_phith_11_4 = KeyboardButton("Громов")
+authors_reply_KeyBoard_Phith11 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_phith_11_1, author_phith_11_2, author_phith_11_3,
+    author_phith_11_4
+)
+
+###****************Phith10***************###
+author_phith_10_1 = KeyboardButton("Мякишев")
+author_phith_10_2 = KeyboardButton("Рымкевич")
+#author_phith_10_3 = KeyboardButton("Александров")
+#author_phith_10_4 = KeyboardButton("Александров углубленный")
+authors_reply_KeyBoard_Phith10 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_phith_10_1, author_phith_10_2 #author_phith_10_3,
+    #author_phith_10_4
+)
+
+###****************Phith9***************###
+author_phith_9_1 = KeyboardButton("Атанасян")
+author_phith_9_2 = KeyboardButton("Погорелов")
+author_phith_9_3 = KeyboardButton("Атанасян раб. тетрадь")
+author_phith_9_4 = KeyboardButton("Полонский")
+authors_reply_KeyBoard_Phith9 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_phith_9_1, author_phith_9_2, author_phith_9_3,
+    author_phith_9_4
+)
+
+###****************Phith8***************###
 author_geometry_11_1 = KeyboardButton("Атанасян")
 author_geometry_11_2 = KeyboardButton("Мерзляк")
 author_geometry_11_3 = KeyboardButton("Атанасян раб. тетрадь")
@@ -185,7 +249,7 @@ authors_reply_KeyBoard_geometry8 = ReplyKeyboardMarkup(resize_keyboard=True).add
     author_geometry_11_4
 )
 
-###****************Geometry7***************###
+###****************Phith7***************###
 author_geometry_11_1 = KeyboardButton("Атанасян")
 author_geometry_11_2 = KeyboardButton("Мерзляк")
 author_geometry_11_3 = KeyboardButton("Мерзляк раб. тетрадь")

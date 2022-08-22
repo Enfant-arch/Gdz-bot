@@ -94,7 +94,7 @@ async def refactor_authors_9Algebra(author):
         return "makarichev-uglublennoe-izuchenie"
     elif author == "Мордкович":
         return "morodkovich"
-    elif author == "Мордкович углубленный":
+    elif author == "Мордкович Углубленный":
         return "mordkovich-uglublennoe-izuchenie"
     elif author == "Мерзляк":
         return "merzlyak"
@@ -108,13 +108,12 @@ async def refactor_authors_8Algebra(author):
         return "macarichev-uglublennij-uroven"
     elif author == "Мордкович":
         return "morodkovich"
-    elif author == "Мордкович углубленный":
+    elif author == "Мордкович Углубленный":
         return "mordkovich-uglublennyj-zadachnik"
     elif author == "Мерзляк":
         return "merzlyak"
     elif author == "Мерзляк Углубленный":
         return "merzlyak-polyakov"
-
     elif author == "Алимов":
         return "alimov_2012"
 
@@ -169,9 +168,42 @@ async def refactor_authors_8Geometry(author):
 async def refactor_authors_7Geometry(author):
     if author == "Атанасян":
         return "atanasjan"
+    elif author == "Мерзляк":
+        return "merzlyak"
+    elif author == "Мерзляк раб. тетрадь":
+        return "merzlyakWorkNote"
     elif author == "Погорелов":
         return "pogorelov"
-    elif author == "Атанасян":
-        return "atanasjan"
-    elif author == "Погорелов":
-        return "pogorelov"
+
+
+
+async def refactor_authors_11Phith(author):
+    if author == "Задачник Рымкевич":
+        return "rymkevich"
+    elif author == "Степанов Сборник задач":
+        return "stepanova"
+    elif author == "Парфентьева Сборник задач":
+        return "parfenova"
+    elif author == "Громов":
+        return "gromov"
+
+
+async def refactor_authors_10Phith(author):
+    if author == "Рымкевич":
+        return "rymkevich"
+    elif author == "Мякишев":
+        return "_mjakishev"
+    #elif author == "Парфентьева Сборник задач":
+      #  return "parfenova"
+    #elif author == "Громов":
+     #   return "gromov"
+
+async def refactor_authors_11Phith(author):
+    if author == "Задачник Рымкевич":
+        return "rymkevich"
+    elif author == "Степанов Сборник задач":
+        return "stepanova"
+    elif author == "Парфентьева Сборник задач":
+        return "parfenova"
+    elif author == "Громов":
+        return "gromov"
