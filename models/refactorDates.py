@@ -11,7 +11,7 @@ async def refactor_subject(subject):
     elif subject == "Английский язык":
         return "english"
 
-    elif subject == "Русский язык":
+    elif subject == "Русский язык🖊":
         return "russkii_yazik"
 
     elif subject == "Алгебра➕":
@@ -198,12 +198,124 @@ async def refactor_authors_10Phith(author):
     #elif author == "Громов":
      #   return "gromov"
 
-async def refactor_authors_11Phith(author):
-    if author == "Задачник Рымкевич":
-        return "rymkevich"
-    elif author == "Степанов Сборник задач":
-        return "stepanova"
-    elif author == "Парфентьева Сборник задач":
-        return "parfenova"
+async def refactor_authors_9Phith(author):
+    if author == "Перышкин упражнения":
+        return "perishkin"
+    elif author == "Генденштейн задчаник":
+        return "gendenshtein-zadachnik"
+    elif author == "Лукаши":
+        return "lukashi"
+
+async def refactor_authors_8Phith(author):
+    if author == "Перышкин упражнения":
+        return "perishkin"
+    elif author == "Генденштейн задчаник":
+        return "gendenshtein-zadachnik"
+    elif author == "Лукаши":
+        return "lukashi"
+
+async def refactor_authors_7Phith(author):
+    if author == "Перышкин упражнения":
+        return "perishkin"
+    elif author == "Лукаши":
+        return "lukashi"
+
+
+
+
+
+
+async def refactor_authors_11Russian(author):
+    if author == "Гольцова Базовый уровень":
+        return "golcova"
+    elif author == "Власенков":
+        return "vlasenkov"
+    elif author == "Греков":
+        return "grekov"
     elif author == "Громов":
         return "gromov"
+
+async def refactor_authors_10Russian(author):
+    if author == "Рымкевич":
+        return "rymkevich"
+    elif author == "Мякишев":
+        return "_mjakishev"
+    #elif author == "Парфентьева Сборник задач":
+      #  return "parfenova"
+    #elif author == "Громов":
+     #   return "gromov"
+
+
+async def refactor_authors_9Russian(author):
+    if author == "Ладыженская":
+        return "trosteva"
+    elif author == "Разумовская":
+        return "razumovskaya"
+    elif author == "Бархударов":
+        return "bahdurov"
+    elif author == "Рыбченкова":
+        return "ribacheva"
+
+async def refactor_authors_8Russian(author):
+    if author == "Ладыженская":
+        return "trosteva"
+    elif author == "Разумовская":
+        return "razumovskaya"
+    elif author == "Бархударов":
+        return "bahdurov"
+    elif author == "Рыбченкова":
+        return "ribacheva"
+
+async def refactor_authors_7Russian(author):
+    if author == "Ладыженская":
+        return "ladishzkaya"
+    elif author == "Разумовская":
+        return "razumovskaya"
+    elif author == "Ефремова":
+        return "efremova"
+    elif author == "Рыбченкова":
+        return "ribacheva"
+
+async def refactor_authors_6Russian(author):
+    if author == "Ладыженская":
+        return "ladishzkaya"
+    elif author == "Разумовская":
+        return "razumovskaya"
+    elif author == "Шмелев":
+        return "shmelev"
+    elif author == "Рыбченкова":
+        return "ribacheva"
+    elif author == "Львова":
+        return "livova"
+
+async def refactor_authors_5Russian(author):
+    if author == "Ладыженская":
+        return "ladishzkaya"
+    elif author == "Разумовская":
+        return "razumovskaya"
+    elif author == "Шмелев":
+        return "shmelev"
+    elif author == "Рыбченкова":
+        return "ribacheva"
+    elif author == "Львова":
+        return "livova"
+    elif author == "Ефремова":
+        return "efremova"
+
+async def refactor_authors_11English(author):
+    if author == "Enjoy":
+        return "enjoy"
+    elif author == "Enjoy Раб тетрадь":
+        return "enjoywn"
+    elif author == "Кузовлев":
+        return "kuzolev"
+    elif author == "Кузовлев Раб тетрадь":
+        return "kuzolevwn"
+    elif author == "Афанасьева":
+        return "afanaseva"
+    elif author == "Афанасьева Раб тетрадь":
+        return "afanasevawn"
+    elif author == "Spotlight":
+        return "spotlight"
+    elif author == "Spotlight Раб тетрадь":
+        return "spotlightwn"

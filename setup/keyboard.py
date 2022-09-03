@@ -1,4 +1,3 @@
-from ctypes import resize
 from aiogram.types import (InlineQuery, InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultArticle,
                            InputTextMessageContent, ReplyKeyboardMarkup, KeyboardButton)
 
@@ -19,11 +18,10 @@ other_solution = KeyboardButton("Другое решение")
 AE_replyKeyBoard = ReplyKeyboardMarkup(resize_keyboard=True).add(other_numbers, ToStartReply, other_solution) 
 #************************************************#
 ###****************Subjects***************###
-'''
-russian = KeyboardButton("Русский язык")
+
+russian = KeyboardButton("Русский язык🖊")
 math = KeyboardButton("Математика")
-english = KeyboardButton("Английский язык")
-'''
+english = KeyboardButton("Английский 🇺🇸")
 algebra = KeyboardButton("Алгебра➕")
 geometry = KeyboardButton("Геометрия📐")
 phizika = KeyboardButton("Физика📊")
@@ -56,7 +54,7 @@ world_ofNatrueAndHuman = KeyboardButton("Мир природы и человек
 
 
 Subjects_reply_Keyboard = ReplyKeyboardMarkup(resize_keyboard=True).add(
-    #russian, math, english,
+    russian, math, english,
     algebra, geometry, phizika
     #chemestry, Desutchland_lang, Ukrainskiy_lang,
     #Franch_lang, Biology, History,
@@ -230,31 +228,166 @@ authors_reply_KeyBoard_Phith10 = ReplyKeyboardMarkup(resize_keyboard=True).add(
 )
 
 ###****************Phith9***************###
-author_phith_9_1 = KeyboardButton("Атанасян")
-author_phith_9_2 = KeyboardButton("Погорелов")
-author_phith_9_3 = KeyboardButton("Атанасян раб. тетрадь")
-author_phith_9_4 = KeyboardButton("Полонский")
+author_phith_9_1 = KeyboardButton("Перышкин упражнения")
+author_phith_9_2 = KeyboardButton("Генденштейн задчаник")
+author_phith_9_3 = KeyboardButton("Лукаши")
+#author_phith_9_4 = KeyboardButton("Полонский")
 authors_reply_KeyBoard_Phith9 = ReplyKeyboardMarkup(resize_keyboard=True).add(
     author_phith_9_1, author_phith_9_2, author_phith_9_3,
-    author_phith_9_4
+    #author_phith_9_4
 )
 
 ###****************Phith8***************###
-author_geometry_11_1 = KeyboardButton("Атанасян")
-author_geometry_11_2 = KeyboardButton("Мерзляк")
-author_geometry_11_3 = KeyboardButton("Атанасян раб. тетрадь")
-author_geometry_11_4 = KeyboardButton("Погорелов")
-authors_reply_KeyBoard_geometry8 = ReplyKeyboardMarkup(resize_keyboard=True).add(
-    author_geometry_11_1, author_geometry_11_2, author_geometry_11_3,
-    author_geometry_11_4
+author_phith_8_1 = KeyboardButton("Перышкин упражнения")
+author_phith_8_2 = KeyboardButton("Генденштейн задчаник")
+authors_reply_KeyBoard_Phith8 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_phith_8_1, author_phith_8_2, author_phith_9_3,
+    #author_phith_9_4
 )
 
 ###****************Phith7***************###
-author_geometry_11_1 = KeyboardButton("Атанасян")
-author_geometry_11_2 = KeyboardButton("Мерзляк")
-author_geometry_11_3 = KeyboardButton("Мерзляк раб. тетрадь")
-author_geometry_11_4 = KeyboardButton("Погорелов")
-authors_reply_KeyBoard_geometry7 = ReplyKeyboardMarkup(resize_keyboard=True).add(
-    author_geometry_11_1, author_geometry_11_2, author_geometry_11_3,
-    author_geometry_11_4
+author_phith_7_1 = KeyboardButton("Перышкин упражнения")
+author_phith_7_2 = KeyboardButton("Лукаши")
+authors_reply_KeyBoard_Phith7 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_phith_7_1, author_phith_7_2
 )
+
+
+###****************Russian***************###
+###****************Russian11***************###
+author_rusian_11_1 = KeyboardButton("Гольцова Базовый уровень")
+author_rusian_11_2 = KeyboardButton("Власенков")
+author_rusian_11_3 = KeyboardButton("Греков")
+author_rusian_11_4 = KeyboardButton("Громов")
+authors_reply_KeyBoard_Russian11 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_11_1, author_rusian_11_2, author_rusian_11_3
+)
+
+###****************Russian10***************###
+author_rusian_10_1 = KeyboardButton("Гольцова Базовый уровень")
+author_rusian_10_2 = KeyboardButton("Власенков")
+author_rusian_10_3 = KeyboardButton("Греков")
+author_rusian_10_4 = KeyboardButton("Громов")
+authors_reply_KeyBoard_Russian11 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_10_1, author_rusian_10_2, author_rusian_10_3
+)
+
+###****************Russian9***************###
+author_rusian_9_1 = KeyboardButton("Ладыженская")
+author_rusian_9_2 = KeyboardButton("Разумовская")
+author_rusian_9_3 = KeyboardButton("Бархударов")
+author_rusian_9_4 = KeyboardButton("Рыбченкова")
+authors_reply_KeyBoard_Russian9 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_9_1, author_rusian_9_2, author_rusian_9_3,
+    author_rusian_9_4
+)
+###****************Russian8***************###
+author_rusian_8_1 = KeyboardButton("Ладыженская")
+author_rusian_8_2 = KeyboardButton("Разумовская")
+author_rusian_8_3 = KeyboardButton("Бархударов")
+author_rusian_8_4 = KeyboardButton("Рыбченкова")
+authors_reply_KeyBoard_Russian8 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_8_1, author_rusian_8_2, author_rusian_8_3,
+    author_rusian_8_4
+)
+###****************Russian7***************###
+author_rusian_7_1 = KeyboardButton("Ладыженская")
+author_rusian_7_2 = KeyboardButton("Разумовская")
+author_rusian_7_3 = KeyboardButton("Ефремова")
+author_rusian_7_4 = KeyboardButton("Рыбченкова")
+authors_reply_KeyBoard_Russian7 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_7_1, author_rusian_7_2, author_rusian_7_3,
+    author_rusian_7_4
+)
+###****************Russian6***************###
+author_rusian_6_1 = KeyboardButton("Ладыженская")
+author_rusian_6_2 = KeyboardButton("Разумовская")
+author_rusian_6_3 = KeyboardButton("Шмелев")
+author_rusian_6_4 = KeyboardButton("Рыбченкова")
+author_rusian_6_5 = KeyboardButton("Львова")
+authors_reply_KeyBoard_Russian6 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_6_1, author_rusian_6_2, author_rusian_6_3,
+    author_rusian_6_4, author_rusian_6_5
+)
+###****************Russian5***************###
+author_rusian_5_1 = KeyboardButton("Ладыженская")
+author_rusian_5_2 = KeyboardButton("Разумовская")
+author_rusian_5_3 = KeyboardButton("Шмелев")
+author_rusian_5_4 = KeyboardButton("Рыбченкова")
+author_rusian_5_5 = KeyboardButton("Львова")
+author_rusian_5_6 = KeyboardButton("Ефремова")
+authors_reply_KeyBoard_Russian5 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_rusian_5_1, author_rusian_5_2, author_rusian_5_3,
+    author_rusian_5_4, author_rusian_5_5, author_rusian_5_6
+)
+###****************English***************###
+###****************English11***************###
+author_englsh_11_1 = KeyboardButton("Enjoy")
+author_englsh_11_4 = KeyboardButton("Кузовлев Раб тетрадь")
+author_englsh_11_5 = KeyboardButton("Афанасьева")
+author_englsh_11_6 = KeyboardButton("Афанасьева Раб тетрадь")
+author_englsh_11_7 = KeyboardButton("Spotlight")
+author_englsh_11_8 = KeyboardButton("Spotlight Раб тетрадь")
+authors_reply_KeyBoard_English11 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_11_1, author_englsh_11_4, author_englsh_11_5,
+    author_englsh_11_6, author_englsh_11_7, author_englsh_11_8 
+)
+
+###****************English10***************###
+author_englsh_10_1 = KeyboardButton("Гольцова Базовый уровень")
+author_englsh_10_2 = KeyboardButton("Власенков")
+author_englsh_10_3 = KeyboardButton("Греков")
+author_englsh_10_4 = KeyboardButton("Громов")
+authors_reply_KeyBoard_English10 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_10_1, author_englsh_10_2, author_englsh_10_3
+)
+
+###****************English9***************###
+author_englsh_9_1 = KeyboardButton("Ладыженская")
+author_englsh_9_2 = KeyboardButton("Разумовская")
+author_englsh_9_3 = KeyboardButton("Бархударов")
+author_englsh_9_4 = KeyboardButton("Рыбченкова")
+authors_reply_KeyBoard_English9 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_9_1, author_englsh_9_2, author_englsh_9_3,
+    author_englsh_9_4
+)
+###****************English8***************###
+author_englsh_8_1 = KeyboardButton("Ладыженская")
+author_englsh_8_2 = KeyboardButton("Разумовская")
+author_englsh_8_3 = KeyboardButton("Бархударов")
+author_englsh_8_4 = KeyboardButton("Рыбченкова")
+authors_reply_KeyBoard_English8 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_8_1, author_englsh_8_2, author_englsh_8_3,
+    author_englsh_8_4
+)
+###****************English7***************###
+author_englsh_7_1 = KeyboardButton("Ладыженская")
+author_englsh_7_2 = KeyboardButton("Разумовская")
+author_englsh_7_3 = KeyboardButton("Ефремова")
+author_englsh_7_4 = KeyboardButton("Рыбченкова")
+authors_reply_KeyBoard_English7 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_7_1, author_englsh_7_2, author_englsh_7_3,
+    author_englsh_7_4
+)
+###****************English6***************###
+author_englsh_6_1 = KeyboardButton("Ладыженская")
+author_englsh_6_2 = KeyboardButton("Разумовская")
+author_englsh_6_3 = KeyboardButton("Шмелев")
+author_englsh_6_4 = KeyboardButton("Рыбченкова")
+author_englsh_6_5 = KeyboardButton("Львова")
+authors_reply_KeyBoard_English6 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_6_1, author_englsh_6_2, author_englsh_6_3,
+    author_englsh_6_4, author_englsh_6_5
+)
+###****************English5***************###
+author_englsh_5_1 = KeyboardButton("Ладыженская")
+author_englsh_5_2 = KeyboardButton("Разумовская")
+author_englsh_5_3 = KeyboardButton("Шмелев")
+author_englsh_5_4 = KeyboardButton("Рыбченкова")
+author_englsh_5_5 = KeyboardButton("Львова")
+author_englsh_5_6 = KeyboardButton("Ефремова")
+authors_reply_KeyBoard_English5 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    author_englsh_5_1, author_englsh_5_2, author_englsh_5_3,
+    author_englsh_5_4, author_englsh_5_5, author_englsh_5_6
+)
+

@@ -2,7 +2,6 @@ import models.Gdz as solve
 import models
 
 class Sender():
-   
     async def send_solution(links, subject, class_, author, taskN, message, Shelper, keyBoard, logging):
         if len(links) == 0:
             await Shelper.send_message(chat_id=message.from_user.id, text="Такого номера нет", reply_markup=keyBoard.AE_replyKeyBoard)
@@ -276,7 +275,7 @@ class Sender():
                         elif author == "merzlyak":
                             msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
                             links = await solve.Geometry8.connect_to_Mezlyak(subject=subject, class_=class_, author=author, taskN=taskN) 
-                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,  taskN=taskN, message=message )
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
                             await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
                         elif author == "atanasyanWN":
                             msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
@@ -345,13 +344,15 @@ class Sender():
                             await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
                             await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
                         elif author == "_mjakishev":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
                             links = await solve.Phith10.connect_to_mjakishev(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
                             await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
-                            
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
                         elif author == "parfenova":
-                        #links = await solve.Phith11.connect_to_gromov(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
-                            #await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
-                            await message.answer(text="Учебник на обновлении")
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith10.connect_to_mjakishev(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
                         elif author == "gromov":
                             #links = await solve.Phith11.connect_to_parfenova(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
                             #await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
@@ -359,5 +360,291 @@ class Sender():
                         else:
                             await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")                
             
+                    elif data["subject"] == "Физика📊" and data["class_"] == "9 класс":
+                        author = await models.refactorDates.refactor_authors_9Phith(data["author"])
+                        if author == "perishkin":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith9.connect_to_perishkin(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "gendenshtein-zadachnik":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith9.connect_to_gendenshtein_zadachnik(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                            
+                        elif author == "lukashi":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith9.connect_to_luskshin(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")                
+                    elif data["subject"] == "Физика📊" and data["class_"] == "8 класс":
+                        author = await models.refactorDates.refactor_authors_8Phith(data["author"])
+                        if author == "perishkin":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith8.connect_to_perishkin(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "gendenshtein-zadachnik":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith8.connect_to_gendenshtein_zadachnik(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                            
+                        elif author == "lukashi":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith8.connect_to_luskshin(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
 
+                    elif data["subject"] == "Физика📊" and data["class_"] == "7 класс":
+                        author = await models.refactorDates.refactor_authors_7Phith(data["author"])
+                        if author == "perishkin":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith7.connect_to_perishkin(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
     
+                        elif author == "lukashi":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Phith8.connect_to_luskshin(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "11 класс":
+                        author = await models.refactorDates.refactor_authors_11Russian(data["author"])
+                        if author == "golcova":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik11.connect_to_Golcova(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "vlasenkov":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik11.connect_to_vlasenkov(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "grekov":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik11.connect_to_Grekov(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "gromov":
+                            #links = await solve.Phith11.connect_to_parfenova(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            #await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await message.answer(text="Учебник на обновлении")
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "10 класс":
+                        author = await models.refactorDates.refactor_authors_11Russian(data["author"])
+                        if author == "golcova":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik11.connect_to_Golcova(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "vlasenkov":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik11.connect_to_vlasenkov(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "grekov":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik11.connect_to_Grekov(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "gromov":
+                            #links = await solve.Phith11.connect_to_parfenova(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN) 
+                            #await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message, Shelper=Shelper,keyBoard=keyBoard,logging=logging )
+                            await message.answer(text="Учебник на обновлении")
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "9 класс":
+                        author = await models.refactorDates.refactor_authors_9Russian(data["author"])
+                        if author == "trosteva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik9.connect_to_trosteva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "razumovskaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik9.connect_to_razumovskaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "bahdurov":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik9.connect_to_bahdurov(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "ribacheva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik9.connect_to_ribacheva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "8 класс":
+                        author = await models.refactorDates.refactor_authors_8Russian(data["author"])
+                        if author == "trosteva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik8.connect_to_trosteva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "razumovskaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik8.connect_to_razumovskaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "bahdurov":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik8.connect_to_bahdurov(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "ribacheva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik8.connect_to_ribacheva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "7 класс":
+                        author = await models.refactorDates.refactor_authors_7Russian(data["author"])
+                        if author == "ladishzkaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik7.connect_to_ladishzkaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "razumovskaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik7.connect_to_razumovskaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "efremova":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik7.connect_to_efremova(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "ribacheva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik7.connect_to_ribacheva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "6 класс":
+                        author = await models.refactorDates.refactor_authors_6Russian(data["author"])
+                        if author == "ladishzkaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik6.connect_to_ladishzkaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "razumovskaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik6.connect_to_razumovskaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "shmelev":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik6.connect_to_shmelev(subject=subject, class_ = class_, author=author, prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "ribacheva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik6.connect_to_ribacheva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "livova":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik6.connect_to_livova(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+
+                    elif data["subject"] == "Русский язык🖊" and data["class_"] == "5 класс":
+                        author = await models.refactorDates.refactor_authors_5Russian(data["author"])
+                        if author == "ladishzkaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik5.connect_to_ladishzkaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "razumovskaya":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik5.connect_to_razumovskaya(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "shmelev":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik5.connect_to_shmelev(subject=subject, class_ = class_, author=author, prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "ribacheva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik5.connect_to_ribacheva(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "livova":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik5.connect_to_livova(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "efremova":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.Russki_Yazik5.connect_to_efremova(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+
+                    elif data["subject"] == "Английский 🇺🇸" and data["class_"] == "11 класс":
+                        author = await models.refactorDates.refactor_authors_11English(data["author"])
+                        if author == "enjoy":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English11.connect_to_enjoy(subject=subject, class_ = class_, author=author, prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,prgh=prgh,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "kuzolevwn":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English11.connect_to_kuzolevwn(subject=subject, class_ = class_, author=author, prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, prgh=prgh, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "afanaseva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English11.connect_to_afanaseva(subject=subject, class_ = class_, author=author,prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,taskN=taskN,prgh=prgh, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "afanasevawn":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English11.connect_to_afanasevawn(subject=subject, class_ = class_, author=author,prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, prgh=prgh, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "spotlight":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English11.connect_to_spotlight(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "spotlightwn":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English11.connect_to_spotlightwn(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+                    
+
+
+
+
+
+

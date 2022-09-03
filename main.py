@@ -1,8 +1,9 @@
-import asyncio
 import logging
-import aiogram
+from tabnanny import check
 import setup.setting as settings
 import setup.keyboard as keyBoard
+from admin import adminBoard as admin_board, comands 
+from dates import db
 import models.plot as plot
 import models.Gdz as solve 
 from models.handler import handler
@@ -24,11 +25,19 @@ dp = Dispatcher(Shelper, storage=storage)
 logging.basicConfig(level=logging.INFO)
 gdz_plot = plot.Search_GDZ()
 
+admin_id = int(settings.load_id())
 
 @dp.message_handler(commands=["start"])
 async def start_message(message : types.Message):
-    await message.answer("Wellcome(write later...)", reply_markup=keyBoard.start_inline_Keyboard)
-
+    if message.from_user.id == admin_id:
+        await message.answer("Вошел в админ панель", reply_markup=admin_board.start_reply_Keyboard)
+    else:
+        await message.answer("Wellcome(write later...)", reply_markup=keyBoard.start_inline_Keyboard)
+        logging.info('Пользователь %r запустил бота %r', message.from_user.full_name, message.from_user.id)
+        cheker =  db.db(message.from_user.first_name, message.from_user.id, True)
+        if await cheker.exist() == []:
+            await cheker.add()
+        
 
 @dp.callback_query_handler(lambda x: x.data == "start")
 async def process_send_toMainMenu(callback_query: types.CallbackQuery):
@@ -54,21 +63,22 @@ async def cancel_handler(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state is None:
         return
-    logging.info('Cancelling state %r', current_state)
+    
     await state.finish()
-    await message.reply('Cancelled.', reply_markup=keyBoard.start_reply_Keyboard)
+    await message.reply(f'Сценарий поиска отменен ', reply_markup=keyBoard.start_reply_Keyboard)
 
 @dp.message_handler(state=gdz_plot.subject)
 async def process_subject(message: types.Message, state: FSMContext):
     async with state.proxy() as data:
         data['subject'] = message.text
         startwith = await models.refactorDates.refactor_subject(data["subject"])
-        if startwith == "geometria" or "fizika" or "algebra":
-            await gdz_plot.next()
-            await message.reply("Введите ваш класс", reply_markup=keyBoard.age7_reply_Keyboard)
-        else:
+        logging.info("startwith: %r", startwith)
+        if startwith == "russkii_yazik":
             await gdz_plot.next()
             await message.reply("Введите ваш класс", reply_markup=keyBoard.age_reply_Keyboard)
+        else:
+            await gdz_plot.next()   
+            await message.reply("Введите ваш класс", reply_markup=keyBoard.age7_reply_Keyboard)
 
 @dp.message_handler(state=gdz_plot.class_)
 async def process_age(message: types.Message, state: FSMContext):
@@ -109,7 +119,6 @@ async def process_age(message: types.Message, state: FSMContext):
                 await gdz_plot.next()
                 await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_geometry7)   
         elif data["subject"] == "Физика📊":
-            await message.answer("all ok")
             if data["class_"] == "11 класс":
                 await gdz_plot.next()
                 await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Phith11)    
@@ -121,10 +130,54 @@ async def process_age(message: types.Message, state: FSMContext):
                 await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Phith9)
             elif data["class_"] == "8 класс":
                 await gdz_plot.next()
-                await message.reply("Введите автора false", reply_markup=keyBoard.authors_reply_KeyBoard_geometry8)
+                await message.reply("Введите автора false", reply_markup=keyBoard.authors_reply_KeyBoard_Phith8)
             elif data["class_"] == "7 класс":
                 await gdz_plot.next()
-                await message.reply("Введите автора false", reply_markup=keyBoard.authors_reply_KeyBoard_geometry7)     
+                await message.reply("Введите автора false", reply_markup=keyBoard.authors_reply_KeyBoard_Phith7) 
+        elif data["subject"] == "Русский язык🖊":
+            if data["class_"] == "11 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian11)    
+            elif data["class_"] == "10 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian10)
+            elif data["class_"] == "9 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian9)
+            elif data["class_"] == "8 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian8)
+            elif data["class_"] == "7 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian7)
+            elif data["class_"] == "6 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian6)
+            elif data["class_"] == "5 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_Russian5)     
+        elif data["subject"] == "Английский 🇺🇸":
+            if data["class_"] == "11 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English11)    
+            elif data["class_"] == "10 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English10)
+            elif data["class_"] == "9 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English9)
+            elif data["class_"] == "8 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English8)
+            elif data["class_"] == "7 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English7)
+            elif data["class_"] == "6 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English6)
+            elif data["class_"] == "5 класс":
+                await gdz_plot.next()
+                await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English5)       
     else:
         await message.reply("Решения для предмета не были добавлены")
 
