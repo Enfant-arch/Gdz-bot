@@ -1,4 +1,6 @@
+import asyncio
 import logging
+from pydoc import text
 from tabnanny import check
 import setup.setting as settings
 import setup.keyboard as keyBoard
@@ -14,7 +16,8 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.types import (InlineQuery, InlineQueryResultArticle,
                            InputTextMessageContent, ParseMode)
-
+from aiogram import Bot, Dispatcher, types
+from aiogram.utils import exceptions, executor
 from setup.sender import Sender
 
 ## variable settings
@@ -24,19 +27,20 @@ storage = MemoryStorage()
 dp = Dispatcher(Shelper, storage=storage)
 logging.basicConfig(level=logging.INFO)
 gdz_plot = plot.Search_GDZ()
-
+log = logging.getLogger('broadcast')
 admin_id = int(settings.load_id())
 
 @dp.message_handler(commands=["start"])
 async def start_message(message : types.Message):
     if message.from_user.id == admin_id:
-        await message.answer("Вошел в админ панель", reply_markup=admin_board.start_reply_Keyboard)
+        await message.answer("Добро пожаловать, в админ панель", reply_markup=admin_board.start_reply_Keyboard)
     else:
-        await message.answer("Wellcome(write later...)", reply_markup=keyBoard.start_inline_Keyboard)
+        await message.answer("Привет, жми Начать  использование скорее  ", reply_markup=keyBoard.start_inline_Keyboard)
         logging.info('Пользователь %r запустил бота %r', message.from_user.full_name, message.from_user.id)
         cheker =  db.db(message.from_user.first_name, message.from_user.id, True)
-        if await cheker.exist() == []:
-            await cheker.add()
+        await cheker.add()
+        print("+1")
+        
         
 
 @dp.callback_query_handler(lambda x: x.data == "start")
@@ -208,6 +212,80 @@ async def process_task_andComplte(message: types.Message, state:FSMContext):
      keyBoard=keyBoard, state=state, logging=logging)
                 
 
+
+
+
+
+
+
+
+
+
+################################ADMIN##################################
+@dp.message_handler(text="Статистика🛄")
+async def send_stats_toAdmin(message: types.Message):
+    cheker =  db.db(message.from_user.first_name, message.from_user.id, True)
+    all_ = await cheker.send_all_count()
+    ids = await cheker.send_all_user_id()
+    await message.answer(f"Всего пользователей :  {all_}\n Id's: {ids}")
+
+
+@dp.message_handler(text="Функции🎴")
+async def send_stats_toAdmin(message: types.Message):
+    await message.answer("...", reply_markup=admin_board.funcs_reply_keyboard)
+    
+
+def get_users(message: types.Message):
+    checker =  db.db(message.from_user.first_name, message.from_user.id, True)
+    ids = checker.send_all_user_id()
+
+    print(ids)
+    yield from (ids)
+
+
+async def send_message(user_id: int, text: str, disable_notification: bool = False) -> bool:
+    """
+    Safe messages sender
+    :param user_id:
+    :param text:
+    :param disable_notification:
+    :return:
+    """
+    try:
+        await Shelper.send_message(user_id, text, disable_notification=disable_notification)
+    except exceptions.BotBlocked:
+        log.error(f"Target [ID:{user_id}]: blocked by user")
+    except exceptions.ChatNotFound:
+        log.error(f"Target [ID:{user_id}]: invalid user ID")
+    except exceptions.RetryAfter as e:
+        log.error(f"Target [ID:{user_id}]: Flood limit is exceeded. Sleep {e.timeout} seconds.")
+        await asyncio.sleep(e.timeout)
+        return await send_message(user_id, text)  # Recursive call
+    except exceptions.UserDeactivated:
+        log.error(f"Target [ID:{user_id}]: user is deactivated")
+    except exceptions.TelegramAPIError:
+        log.exception(f"Target [ID:{user_id}]: failed")
+    else:
+        log.info(f"Target [ID:{user_id}]: success")
+        return True
+    return False
+
+
+async def broadcaster() -> int:
+    """
+    Simple broadcaster
+    :return: Count of messages
+    """
+    count = 0
+    try:
+        for user_id in get_users():
+            if await send_message(user_id, '<b>Hello!</b>'):
+                count += 1
+            await asyncio.sleep(.05)  # 20 messages per second (Limit: 30 messages per second)
+    finally:
+        logging.info(f"{count} messages successful sent.")
+
+    return count
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=False)

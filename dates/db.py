@@ -1,7 +1,21 @@
-import sqlite3
-
-con = sqlite3.connect("dates/users.db")
-cur = con.cursor()
+import asyncio
+import psycopg2
+import logging
+conn = psycopg2.connect(database="postgres",
+                        host="localhost",
+                        user="postgres",
+                        password="root",
+                        port="5432")
+conn.autocommit = True
+cursor = conn.cursor()
+###UNCOMMIT WHEN INSTALL ON VM
+'''
+cursor = conn.cursor()
+cursor.execute("""CREATE TABLE users (user_id BIGINT PRIMARY KEY , user_name VARCHAR(50), user_act bool)""" )
+cursor.execute("SELECT version();")
+conn.commit()
+print(cursor.fetchall())
+'''
 
 
 class db:
@@ -9,22 +23,27 @@ class db:
     self.name = name
     self.id = id
     self.activity = activity
-
+    self.cou = 0
 
   async def add(self):
-    user_tl = [
-      (f"{self.name}", self.id, self.activity)
-    ]
-    cur.executemany(f"INSERT INTO user VALUES (?, ?, ?)", user_tl)
-   
+    try:
+      cursor.execute(f"INSERT INTO users (user_id, user_name, user_act) VALUES ({self.id}, '{self.name}', {self.activity})")
+    except Exception as err:
+      self.cou += 1
+
   async def up_activaty(self):
-    await cur.execute(f"SELECT * FROM users WHERE id={self.id}")
-    await cur.executemany("INSERT INTO user activity=?", True)  
+    cursor.execute(f"SELECT * FROM users WHERE id={self.id}")
+    cursor.executemany("INSERT INTO user activity=?", True)  
 
   async def down_activaty(self):
-    await cur.execute(f"SELECT * FROM users WHERE id={self.id}")
-    await cur.executemany("INSERT INTO user activity=?", False)
+    cursor.execute(f"SELECT * FROM users WHERE id={self.id}")
+    cursor.executemany("INSERT INTO user activity=?", False)
 
-  async def exist(self):
-    indet = cur.execute(f"SELECT user_id FROM user WHERE user_id='{self.id}';").fetchall()
-    return indet
+  async def send_all_count(self):
+    cursor.execute("SELECT COUNT(user_id) FROM users;")
+    return str(cursor.fetchall()[0]).replace(",", "")
+  
+  async def send_all_user_id(self):
+    cursor.execute("SELECT user_id FROM users;")
+    return cursor.fetchall()
+  

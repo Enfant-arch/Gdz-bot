@@ -1,10 +1,10 @@
 import asyncio
 import logging
-
+from dates import db
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils import exceptions, executor
 
-API_TOKEN = '5539774286:AAH3XHKblgkI-7hyFCDXeNCjGL-Ia1zkPlI'
+API_TOKEN = '5415772378:AAEKMaZn8oaq8FJbHDzdx3vUouCzi4z62c8'
 
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger('broadcast')
@@ -14,11 +14,10 @@ dp = Dispatcher(bot)
 
 
 def get_users():
-    """
-    Return users list
-    In this example returns some random ID's
-    """
-    yield from ()
+    date = db.db("None", 0, "Noe")
+    ids = date.send_all_user_id()
+    print(ids)
+    yield from (ids)
 
 
 async def send_message(user_id: int, text: str, disable_notification: bool = False) -> bool:

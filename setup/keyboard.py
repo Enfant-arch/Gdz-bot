@@ -3,7 +3,7 @@ from aiogram.types import (InlineQuery, InlineKeyboardButton, InlineKeyboardMark
 
 
 ###****************Start BTN-s ***************###
-start_inline_aboutbtn = InlineKeyboardButton("О боте🌐 ", url="https://google.com")
+start_inline_aboutbtn = InlineKeyboardButton("О боте🌐 ", url="https://enfantc.site/gdz-bot/")
 start_inline_support_author = InlineKeyboardButton("Поддержать 💸", url="http://qiwi.com/n/CLUME911")
 start_inline_LetUsingBot = InlineKeyboardButton("Начать использование▶️", callback_data="start")
 start_inline_Keyboard = InlineKeyboardMarkup(row_width=3).add(start_inline_aboutbtn,
@@ -268,7 +268,7 @@ author_rusian_10_1 = KeyboardButton("Гольцова Базовый урове�
 author_rusian_10_2 = KeyboardButton("Власенков")
 author_rusian_10_3 = KeyboardButton("Греков")
 author_rusian_10_4 = KeyboardButton("Громов")
-authors_reply_KeyBoard_Russian11 = ReplyKeyboardMarkup(resize_keyboard=True).add(
+authors_reply_KeyBoard_Russian10 = ReplyKeyboardMarkup(resize_keyboard=True).add(
     author_rusian_10_1, author_rusian_10_2, author_rusian_10_3
 )
 
