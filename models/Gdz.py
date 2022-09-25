@@ -1,14 +1,7 @@
-import asyncio
-from dataclasses import replace
 import os
 import logging
-from sqlite3 import connect
-from tracemalloc import take_snapshot
 import requests
-
-import urllib
 from bs4 import BeautifulSoup
-
 
 
 class Algebra11():
@@ -276,6 +269,7 @@ class Phith11():
         url = f"https://megaresheba.ru/publ/reshebnik/geometrija/pogorelov_{class_}_8_9_klass/32-1-0-1198/{prgh}-nomer-{taskN}"
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+
 class Phith10():
     async def connect_to_rymkevich(subject, class_, author, taskN):
         url = f"https://megaresheba.ru/gdz-sbornik-zadach-po-fizike-{class_}-11-klass-{author}/{taskN}-nomer"
@@ -318,6 +312,8 @@ class Phith8():
         url = f'https://megaresheba.ru/publ/reshebnik/fizika/reshebnik_k_zadachniku_po_fizike_8_klass_l_eh_gendenshtejna/31-1-0-2195/{prgh}-tema-{taskN}'
         listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author,prgh=prgh, taskN=taskN, url=url)
         return listLinks
+
+
 class Phith7():
     async def connect_to_perishkin(subject, class_, author, prgh, taskN):
         url = f'https://megaresheba.ru/index/07/0-344/{prgh}-{taskN}-nomer'
@@ -390,6 +386,7 @@ class Russki_Yazik9():
         url = f'https://megaresheba.ru/gdz/russkij-yazyk/9-klass/ribchenkova/1-{taskN}-nomer'
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+
 class Russki_Yazik8():
     async def connect_to_trosteva(subject, class_, author, taskN):
         url = f'https://megaresheba.ru/publ/reshebnik/russkomu_jazyku/8_klass_trostencova/35-1-0-1218/{taskN}-nomer'
@@ -407,6 +404,7 @@ class Russki_Yazik8():
         url = f'https://megaresheba.ru/gdz/russkij_jazyk/8-klass/ribchenkova/{taskN}-nomer'
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+
 class Russki_Yazik7():
     async def connect_to_ladishzkaya(subject, class_, author, taskN):
         url = f'https://megaresheba.ru/index/05/0-308/{taskN}-nomer'
@@ -424,6 +422,7 @@ class Russki_Yazik7():
         url = f'https://megaresheba.ru/gdz/russkij_jazyk/5-klass/rybchenkova/{taskN}-nomer'
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+
 class Russki_Yazik6():
     async def connect_to_ladishzkaya(subject, class_, author, taskN):
         url = f'https://megaresheba.ru/index/04/0-4310/{taskN}-nomer'
@@ -449,7 +448,8 @@ class Russki_Yazik6():
     async def connect_to_livova(subject, class_, author, taskN):
         url = f'https://megaresheba.ru/publ/reshebnik/russkomu_jazyku/6_klass_lvov_lvova/35-1-0-2129/{taskN}-nomer'
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
-        return listLinks    
+        return listLinks
+
 class Russki_Yazik5():
     async def connect_to_ladishzkaya(subject, class_, author, taskN):
         url = f'https://megaresheba.ru/index/02/0-4303/{taskN}-nomer'
@@ -480,6 +480,7 @@ class Russki_Yazik5():
         url = f'https://megaresheba.ru/gdz/russkij-yazyk/5-klass/rabochaya-tetrad-efremova/{taskN}-nomer'
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+        
 class English11():
     async def connect_to_enjoy(subject, class_, author, prgh, taskN):
         url = f'https://megaresheba.ru/gdz/anglijskij-yazyk/11-klass/enjoy-english-biboletova-snezhko/{prgh}-unit-{taskN}'
@@ -515,6 +516,43 @@ class English11():
         url = f'https://megaresheba.ru/publ/reshebnik/anglijskij/11_klass_spotlight_afanaseva_workbook/{taskN}-str'
         listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
         return listLinks
+
+class English10():
+    async def connect_to_enjoy(subject, class_, author, prgh, taskN):
+        url = f'https://megaresheba.ru/publ/reshebnik/anglijskij/10_klass_biboletova/42-1-0-2106/{prgh}-unit-{taskN}'
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_enjoywn(subject, class_, author, prgh, taskN):
+        url = f"https://megaresheba.ru/gdz/russkij-yazyk/10-klass/vlasenkov-rybchenkova/{taskN}-nomer"
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_kuzolevwn(subject, class_, author, prgh, taskN):
+        url = f'https://megaresheba.ru/gdz/anglijskij-yazyk/11-klass/kuzovlev-activity-book/{prgh}-unit-{taskN}'
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_afanaseva(subject, class_, author, prgh, taskN):
+        url = f"https://megaresheba.ru/gdz/anglijskij-yazyk/10-klass/afanaseva/{prgh}-unit-{taskN}"
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_afanasevawn(subject, class_, author, prgh, taskN):
+        url = f'https://megaresheba.ru/gdz/anglijskij-yazyk/10-klass/tetrad-afanaseva/{taskN}-str'
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_spotlight(subject, class_, author, taskN):
+        url = f"https://megaresheba.ru/publ/reshebnik/anglijskij/10_klass_spotlight_evans/{taskN}-str"
+        listLinks = await connecting_and_save_NONEprgh(subject=subject, class_=class_, author=author, taskN=taskN, url=url)
+        return listLinks
+
+    async def connect_to_spotlightwn(subject, class_, author, prgh, taskN):
+        url = f'https://megaresheba.ru/gdz/anglijskij/10-klass/workbook-spotlight-evans/{prgh}-module-{taskN}'
+        listLinks = await connecting_and_save_withprgh(subject=subject, class_=class_, author=author, prgh=prgh, taskN=taskN, url=url)
+        return listLinks
+
 
 
 ###TODO Eng, Chemisty, History, Biology

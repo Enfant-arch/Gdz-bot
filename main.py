@@ -1,10 +1,12 @@
 import asyncio
 import logging
+import plistlib
 from pydoc import text
 from tabnanny import check
+from admin.keyboard import adminBoard as admin_board
 import setup.setting as settings
-import setup.keyboard as keyBoard
-from admin import adminBoard as admin_board, comands 
+import setup.keyboard.userBoard as keyBoard
+from admin import comands 
 from dates import db
 import models.plot as plot
 import models.Gdz as solve 
@@ -29,13 +31,14 @@ logging.basicConfig(level=logging.INFO)
 gdz_plot = plot.Search_GDZ()
 log = logging.getLogger('broadcast')
 admin_id = int(settings.load_id())
+send = plot.Sendsss()
 
 @dp.message_handler(commands=["start"])
 async def start_message(message : types.Message):
     if message.from_user.id == admin_id:
         await message.answer("Добро пожаловать, в админ панель", reply_markup=admin_board.start_reply_Keyboard)
     else:
-        await message.answer("Привет, жми Начать  использование скорее  ", reply_markup=keyBoard.start_inline_Keyboard)
+        await message.answer('Привет, жми\n"Начать использование" скорее!  ', reply_markup=keyBoard.start_inline_Keyboard)
         logging.info('Пользователь %r запустил бота %r', message.from_user.full_name, message.from_user.id)
         cheker =  db.db(message.from_user.first_name, message.from_user.id, True)
         await cheker.add()
@@ -45,7 +48,7 @@ async def start_message(message : types.Message):
 
 @dp.callback_query_handler(lambda x: x.data == "start")
 async def process_send_toMainMenu(callback_query: types.CallbackQuery):
-    await Shelper.send_message(text="Бот активно тестируется, если у вас вознкнут проблемы или хотите дать пожелания, пишите @enfantc",
+    await Shelper.send_message(text="Бот активно тестируется, если у вас вознкнут проблемы или хотите дать пожелания, пишите @enfantc\nВсе не точности, устранятся спустя 2 часа по вашему запросу",
     chat_id=callback_query.from_user.id,
     reply_markup=keyBoard.start_reply_Keyboard)
 
@@ -183,7 +186,7 @@ async def process_age(message: types.Message, state: FSMContext):
                 await gdz_plot.next()
                 await message.reply("Введите автора", reply_markup=keyBoard.authors_reply_KeyBoard_English5)       
     else:
-        await message.reply("Решения для предмета не были добавлены")
+        await message.reply("Решения для предмета не были добавлены\n Но ведетсья активная работа над этим :)")
 
 @dp.message_handler(state=gdz_plot.author)
 async def process_author(messsage: types.Message, state:FSMContext):
@@ -233,12 +236,23 @@ async def send_stats_toAdmin(message: types.Message):
 @dp.message_handler(text="Функции🎴")
 async def send_stats_toAdmin(message: types.Message):
     await message.answer("...", reply_markup=admin_board.funcs_reply_keyboard)
+
+
+@dp.message_handler(text="Рассылка")
+async def send_stats_toAdmin(message: types.Message):
+    await message.answer("Введите текст для рассылки")
+    await send.message.set()
     
+@dp.message_handler(state=send.message)
+async def process_sending_messages(message: types.Message, state: FSMContext):
+    async with state.proxy() as data:
+        data['message'] = message.text
+        await broadcaster(data['message'])
+        
 
-def get_users(message: types.Message):
-    checker =  db.db(message.from_user.first_name, message.from_user.id, True)
-    ids = checker.send_all_user_id()
-
+def get_users():
+    executer = db.db("execute", 0, False)
+    ids =  db.db.send_user_id()
     print(ids)
     yield from (ids)
 
@@ -271,7 +285,7 @@ async def send_message(user_id: int, text: str, disable_notification: bool = Fal
     return False
 
 
-async def broadcaster() -> int:
+async def broadcaster(text) -> int:
     """
     Simple broadcaster
     :return: Count of messages
@@ -279,7 +293,7 @@ async def broadcaster() -> int:
     count = 0
     try:
         for user_id in get_users():
-            if await send_message(user_id, '<b>Hello!</b>'):
+            if await send_message(user_id, f'{text}'):
                 count += 1
             await asyncio.sleep(.05)  # 20 messages per second (Limit: 30 messages per second)
     finally:

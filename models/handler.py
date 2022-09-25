@@ -1,5 +1,3 @@
-from setup import keyboard
-
 class handler():
     async def add_or_not(first_mean, second_mean):
         if first_mean == "Алгебра➕" and second_mean == "10 класс":
@@ -50,7 +48,9 @@ class handler():
             return True
         elif first_mean == "Английский 🇺🇸" and second_mean == "10 класс":
             return True
-        elif first_mean == "Английский 🇺🇸" and second_mean == "9 класс":
+        else:
+            return False   
+"""        elif first_mean == "Английский 🇺🇸" and second_mean == "9 класс":
             return True
         elif first_mean == "Английский 🇺🇸" and second_mean == "8 класс":
             return True
@@ -60,11 +60,10 @@ class handler():
             return True
         elif first_mean == "Английский 🇺🇸" and second_mean == "5 класс":
             return True
+"""
 
 
-
-        else:
-            return False   
+        
     
 
 

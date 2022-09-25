@@ -334,12 +334,15 @@ authors_reply_KeyBoard_English11 = ReplyKeyboardMarkup(resize_keyboard=True).add
 )
 
 ###****************English10***************###
-author_englsh_10_1 = KeyboardButton("Гольцова Базовый уровень")
-author_englsh_10_2 = KeyboardButton("Власенков")
-author_englsh_10_3 = KeyboardButton("Греков")
-author_englsh_10_4 = KeyboardButton("Громов")
+author_englsh_10_1 = KeyboardButton("Enjoy")
+author_englsh_10_4 = KeyboardButton("Кузовлев Раб тетрадь")
+author_englsh_10_5 = KeyboardButton("Афанасьева")
+author_englsh_10_6 = KeyboardButton("Афанасьева Раб тетрадь")
+author_englsh_10_7 = KeyboardButton("Spotlight")
+author_englsh_10_8 = KeyboardButton("Spotlight Раб тетрадь")
 authors_reply_KeyBoard_English10 = ReplyKeyboardMarkup(resize_keyboard=True).add(
-    author_englsh_10_1, author_englsh_10_2, author_englsh_10_3
+    author_englsh_10_1, author_englsh_10_4, author_englsh_10_5,
+    author_englsh_11_6, author_englsh_11_7, author_englsh_11_8 
 )
 
 ###****************English9***************###

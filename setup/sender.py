@@ -1,5 +1,5 @@
 import models.Gdz as solve 
-import models
+import datetime
 
 class Sender():
     async def send_solution(links, subject, class_, author, taskN, message, Shelper, keyBoard, logging):
@@ -642,6 +642,44 @@ class Sender():
                         else:
                             await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
                     
+
+                    elif data["subject"] == "Английский 🇺🇸" and data["class_"] == "10 класс":
+                        author = await models.refactorDates.refactor_authors_10English(data["author"])
+                        if author == "enjoy":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English10.connect_to_enjoy(subject=subject, class_ = class_, author=author, prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,prgh=prgh,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "kuzolevwn":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English10.connect_to_kuzolevwn(subject=subject, class_ = class_, author=author, prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, prgh=prgh, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "afanaseva":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English10.connect_to_afanaseva(subject=subject, class_ = class_, author=author,prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,taskN=taskN,prgh=prgh, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "afanasevawn":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English10.connect_to_afanasevawn(subject=subject, class_ = class_, author=author,prgh=prgh, taskN=taskN)
+                            await Sender.send_PRGHsolution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, prgh=prgh, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "spotlight":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English10.connect_to_spotlight(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        elif author == "spotlightwn":
+                            msg =  await Shelper.send_message(chat_id=message.from_user.id, text="Отправляем решение......")
+                            links = await solve.English10.connect_to_spotlightwn(subject=subject, class_ = class_, author=author, taskN=taskN)
+                            await Sender.send_solution(links=links, subject=subject, class_=class_, author=author,taskN=taskN, message=message,Shelper=Shelper,keyBoard=keyBoard, logging=logging )
+                            await Shelper.delete_message(chat_id=message.from_user.id,message_id=msg.message_id)
+                        
+                        else:
+                            await message.answer("Возникла не предвиденная ошибка, отпишите для устроненеия в баг репорт.")
+                    
+
 
 
 

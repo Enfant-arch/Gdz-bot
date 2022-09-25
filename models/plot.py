@@ -6,3 +6,5 @@ class Search_GDZ(StatesGroup):
     author =  State()
     prgh = State()
     number = State()
+class Sendsss(StatesGroup):
+    message = State()

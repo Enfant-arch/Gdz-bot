@@ -1,8 +1,3 @@
-import cv2
-import numpy as np
-import asyncio
-
-
 async def refactor_subject(subject):
 
     if subject == "Математика":
@@ -303,6 +298,24 @@ async def refactor_authors_5Russian(author):
         return "efremova"
 
 async def refactor_authors_11English(author):
+    if author == "Enjoy":
+        return "enjoy"
+    elif author == "Enjoy Раб тетрадь":
+        return "enjoywn"
+    elif author == "Кузовлев":
+        return "kuzolev"
+    elif author == "Кузовлев Раб тетрадь":
+        return "kuzolevwn"
+    elif author == "Афанасьева":
+        return "afanaseva"
+    elif author == "Афанасьева Раб тетрадь":
+        return "afanasevawn"
+    elif author == "Spotlight":
+        return "spotlight"
+    elif author == "Spotlight Раб тетрадь":
+        return "spotlightwn"
+
+async def refactor_authors_10English(author):
     if author == "Enjoy":
         return "enjoy"
     elif author == "Enjoy Раб тетрадь":

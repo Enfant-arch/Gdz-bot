@@ -43,7 +43,18 @@ class db:
     cursor.execute("SELECT COUNT(user_id) FROM users;")
     return str(cursor.fetchall()[0]).replace(",", "")
   
-  async def send_all_user_id(self):
+  def enject_user_id():
     cursor.execute("SELECT user_id FROM users;")
     return cursor.fetchall()
-  
+
+  def send_user_id():
+    bad_practice = db.enject_user_id()
+    print(bad_practice)
+    nice_practice = []
+    for i in bad_practice:
+      j = str(i)
+      nice_practice.append(j[1: -1])
+      print(j[1: -2])
+    return nice_practice
+
+ 
